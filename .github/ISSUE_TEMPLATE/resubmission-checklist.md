@@ -22,7 +22,7 @@ The model should be loaded once and reused for performance.
 APIs must return consistent structured data for clients.  
 Raw strings break frontend integration and API usability.  
 JSON ensures compatibility with web apps and tools.  
-Standard format: `{"summary": result}`.
+Standard format: `{"impression": result}`.
 
 ---
 
@@ -47,10 +47,18 @@ This can cause FileNotFoundError in production.
 Using `__file__` ensures stable path resolution everywhere.
 
 ---
+### #5 Blocking async endpoint (performance bottleneck)
+- [ ] Change endpoint to `def` to prevent the app from 'freezing'.
+
+**Why this matters:**
+PyTorch inference is CPU blocking and should not run directly inside async endpoints.
+It blocks the event loop and reduces concurrent request handling.
+
+---
 
 ## 🟠 Deployment Issues (Render Free Tier)
 
-### #5 Incorrect dependency setup for production
+### #6 Incorrect dependency setup for production
 - [ ] Separate training and deployment requirements files. Create minimal production requirements file
 
 **Why this matters:**
@@ -65,7 +73,7 @@ This keeps the app lightweight and stable.
 
 ## 🟡 Performance Issues
 
-### #6 No inference optimization
+### #7 No inference optimization
 - [ ] Add `model.eval()`
 - [ ] Wrap inference in `torch.no_grad()`
 
@@ -77,7 +85,7 @@ Standard practice for ML deployment.
 
 ---
 
-### #7 No input validation
+### #8 No input validation
 - [ ] Add max input length restriction
 - [ ] Prevent oversized requests
 
@@ -89,12 +97,11 @@ It protects the API from misuse.
 
 ---
 
----
 
-## 🟢 Optional Improvements
----
+## 🟢 Optional 
 
-### #8 Add simple HTML test interface
+
+### #9 Add simple HTML test interface
 - [ ] Create input box UI. Display model response and api usage info.
 
 **Why this matters:**
@@ -102,5 +109,3 @@ Makes testing easier without Postman.
 Useful for demos and portfolios.  
 Improves user experience.
 
--
-Ensures predictable performance.
