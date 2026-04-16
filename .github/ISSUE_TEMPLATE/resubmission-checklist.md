@@ -86,8 +86,7 @@ Standard practice for ML deployment.
 ---
 
 ### #8 No input validation
-- [ ] Add max input length restriction
-- [ ] Prevent oversized requests
+- [ ] Add max input length restriction.Prevent oversized requests
 
 **Why this matters:**
 Large inputs can crash or slow down inference.  
